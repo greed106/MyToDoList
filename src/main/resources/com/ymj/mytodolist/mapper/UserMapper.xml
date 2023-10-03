@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ymj.mytodolist.mapper.UserMapper">
+
+    <!-- Your other query mappings... -->
+
+    <update id="updateUser" parameterType="com.ymj.mytodolist.pojo.User">
+        UPDATE mydatabase.user_info
+        <set>
+            <if test="password != null">
+                password = #{password},
+            </if>
+            <if test="updatedTime != null">
+                updated_time = #{updatedTime},
+            </if>
+            <if test="email != null">
+                email = #{email}
+            </if>
+        </set>
+        WHERE username = #{username}
+    </update>
+
+</mapper>

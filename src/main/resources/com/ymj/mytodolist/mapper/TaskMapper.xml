@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ymj.mytodolist.mapper.TaskMapper">
+
+    <!-- 其他的SQL语句可以放在这里 -->
+
+    <update id="updateTask" parameterType="com.ymj.mytodolist.pojo.Task">
+        UPDATE mydatabase.task_info
+        <set>
+            <!-- 对于每个字段, 先检查它是否为null, 如果不为null则进行更新 -->
+            <if test="title != null">
+                title = #{title},
+            </if>
+            <if test="description != null">
+                description = #{description},
+            </if>
+            <if test="updatedTime != null">
+                updated_time = #{updatedTime},
+            </if>
+            <if test="completed != null">
+                completed = #{completed},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime},
+            </if>
+            <if test="overdue != null">
+                overdue = #{overdue},
+            </if>
+        </set>
+        WHERE task_id = #{taskId}
+    </update>
+
+</mapper>

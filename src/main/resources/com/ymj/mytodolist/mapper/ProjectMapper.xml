@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ymj.mytodolist.mapper.ProjectMapper">
+
+    <!-- 其他的SQL语句可以放在这里 -->
+
+    <update id="updateProject" parameterType="com.ymj.mytodolist.pojo.Project">
+        UPDATE mydatabase.project_info
+        <set>
+            <!-- 对于每个字段, 先检查它是否为null, 如果不为null则进行更新 -->
+            <if test="tittle != null">
+                tittle = #{tittle},
+            </if>
+            <if test="description != null">
+                description = #{description},
+            </if>
+            <if test="updatedTime != null">
+                updated_time = #{updatedTime},
+            </if>
+        </set>
+        WHERE project_id = #{projectId}
+    </update>
+
+</mapper>
